@@ -2,7 +2,9 @@
   <div id="app">
     <!--//路由的出口-->
     <router-view/>
-    <h1>黑马头条</h1>
+    <!--<h1>黑马头条</h1>-->
+    <!--<span class="tiaotiao_iconfont icon-guanbi"></span>-->
+
   </div>
 </template>
 <script>
