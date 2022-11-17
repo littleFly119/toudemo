@@ -6,12 +6,12 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    token_key: getItem('token_key')
+    user: getItem('token_key') || null
   },
   getters: {},
   mutations: {
-    update_token_key (state, data) {
-      this.state.token_key = data
+    update_user (state, data) {
+      this.state.user = data
       setItem('token_key', data)
     }
   },

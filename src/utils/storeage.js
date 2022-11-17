@@ -9,7 +9,7 @@ export const setItem = (key, value) => {
 }
 // 获取
 export const getItem = (key) => {
-  const data = window.localStorage.getItem(key)
+  const data = window.localStorage.getItem(key) || null
   try {
     return JSON.parse(data)
   } catch (e) {

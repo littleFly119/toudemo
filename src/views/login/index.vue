@@ -1,8 +1,11 @@
 <template>
   <div class="login-container">
 
-    <van-nav-bar class="page-nav-bar" title="登录"/>
-
+    <van-nav-bar class="page-nav-bar" title="登录">
+      <template #left>
+        <i slot="left-icon" class="tiaotiao_iconfont icon-guanbi" @click="$router.back()"></i>
+      </template>
+    </van-nav-bar>
     <van-form ref="loginForm" @submit="onSubmit">
       <van-field
         v-model="user.mobile"
@@ -95,15 +98,19 @@ export default {
         duration: 0
       })
       try {
+        console.log(user)
         const res = await loginAPI(user)
         this.$toast.success('登录成功')
-        this.$store.commit('update_token_key', res.data.data)
+        this.$store.commit('update_user', res.data.data)
+        this.$router.back()
       } catch (res) {
-        if (res.response.status === 400) {
-          this.$toast.fail(res.response.data.message)
-        } else {
-          this.$toast.fail(res)
-        }
+        this.$toast.fail(res)
+        console.log(res)
+        // if (res.response.status === 400) {
+        //   this.$toast.fail(res.response.data.message)
+        // } else {
+        //   this.$toast.fail(res)
+        // }
       }
     },
     async sendCodeFn () {
@@ -135,6 +142,10 @@ export default {
   .login-container {
     .tiaotiao_iconfont {
       font-size: 37px;
+    }
+    .icon-guanbi {
+      color: #fff;
+      font-size: 18px;
     }
     input {
       color: #c0c0c0;
